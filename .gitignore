@@ -1,0 +1,9 @@
+# Ignore everything in this directory
+.ipynb_checkpoints
+*.pyc
+.idea
+build
+
+# Ignore Mac OS hidden file
+.DS_Store
+
