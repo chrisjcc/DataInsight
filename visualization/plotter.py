@@ -116,30 +116,52 @@ class Plotter(object):
         plt.tight_layout()
         
         return plt.show()
-
-    ## Save plot
-    def savePlots(self, dir='plots', filename=''):
-        """ 
-        Save plot to format e.g. pdf
+      
+    ## Confusion matrix
+    def plot_confusion_matrix(y_true, y_pre, class_names, 
+                              normalize=True, title='Normalized confusion matrix', 
+                              cmap=plt.cm.Blues):
         """
-        # checks if directory exists and if not creates it 
-        self.ensure_dir(dir)
+        This function prints and plots the confusion matrix.
+        Normalization can be applied by setting `normalize=True`.
+        """
+
+        # Compute confusion matrix
+        cnf_matrix = confusion_matrix(y_true, y_pred)
+
+        # Plot non-normalized confusion matrix (or normalized)
+        plot_confusion_matrix(cnf_matrix, classes=class_names, normalize=normalize, title=title)
         
-        # save file
-        self.fig.savefig(dir+'/'+filename)
+        if normalize:
+            cm = cm.astype('float') / cm.sum(axis=1)[:, np.newaxis]
+            print("Normalized confusion matrix")
+        else:
+            print('Confusion matrix, without normalization')
 
-        return self.fig
+        print(cm)
 
-    ## Check folder exist
-    def ensure_dir(self, directory):
-        """
-        When directory is not present, create it.
-        Arguments: 
-        directory: name of directory.
-        """
-        if not os.path.exists(directory):
-            os.makedirs(directory)
-            
+        self.fig, self.ax1 = plt.subplots(ncols=1, figsize=(10, 10)) #test
+
+        plt.imshow(cm, interpolation='nearest', cmap=cmap)
+        plt.title(title)
+        plt.colorbar()
+        tick_marks = np.arange(len(classes))
+        plt.xticks(tick_marks, classes, rotation=45)
+        plt.yticks(tick_marks, classes)
+        
+        fmt = '.2f' if normalize else 'd'
+        thresh = cm.max() / 2.
+        for i, j in itertools.product(range(cm.shape[0]), range(cm.shape[1])):
+            plt.text(j, i, format(cm[i, j], fmt),
+                     horizontalalignment="center",
+                     color="white" if cm[i, j] > thresh else "black")
+
+        plt.tight_layout()
+        plt.ylabel('True label')
+        plt.xlabel('Predicted label')
+
+        return plt.show()
+      
 
     ## Defined overfitting plot
     def overfitting(self, estimator, X_train, X_test, y_train, y_test, bins=50):
@@ -261,7 +283,6 @@ class Plotter(object):
         frame.set_facecolor('White')
 
         return plt.show()
-
 
 
     ## Define validation plots
@@ -934,3 +955,26 @@ class Plotter(object):
         plt.tight_layout()
 
         return plt.show()
+      
+      ## Save plot
+    def savePlots(self, dir='plots', filename=''):
+        """ 
+        Save plot to format e.g. pdf
+        """
+        # checks if directory exists and if not creates it 
+        self.ensure_dir(dir)
+        
+        # save file
+        self.fig.savefig(dir+'/'+filename)
+
+        return self.fig
+
+    ## Check folder exist
+    def ensure_dir(self, directory):
+        """
+        When directory is not present, create it.
+        Arguments: 
+        directory: name of directory.
+        """
+        if not os.path.exists(directory):
+            os.makedirs(directory)
