@@ -117,8 +117,9 @@ class Plotter(object):
         
         return plt.show()
       
-    ## Confusion matrix
-    def plot_confusion_matrix(self, y_true, y_pred, class_names, 
+    ## Plot Confusion matrix
+    def plot_confusion_matrix(self, y_true, y_pred, 
+                              classes, 
                               normalize=True, title='Normalized confusion matrix', 
                               cmap=plt.cm.Blues):
         """
@@ -129,20 +130,15 @@ class Plotter(object):
         # Compute confusion matrix
         cnf_matrix = confusion_matrix(y_true, y_pred)
 
-        # Plot non-normalized confusion matrix (or normalized)
-        plot_confusion_matrix(cnf_matrix, classes=class_names, normalize=normalize, title=title)
-        
         if normalize:
-            cm = cm.astype('float') / cm.sum(axis=1)[:, np.newaxis]
+            cnf_matrix = cnf_matrix.astype('float') / cnf_matrix.sum(axis=1)[:, np.newaxis]
             print("Normalized confusion matrix")
         else:
             print('Confusion matrix, without normalization')
 
-        print(cm)
+        print(cnf_matrix)
 
-        self.fig, self.ax1 = plt.subplots(ncols=1, figsize=(10, 10)) #test
-
-        plt.imshow(cm, interpolation='nearest', cmap=cmap)
+        plt.imshow(cnf_matrix, interpolation='nearest', cmap=cmap)
         plt.title(title)
         plt.colorbar()
         tick_marks = np.arange(len(classes))
@@ -150,11 +146,11 @@ class Plotter(object):
         plt.yticks(tick_marks, classes)
         
         fmt = '.2f' if normalize else 'd'
-        thresh = cm.max() / 2.
-        for i, j in itertools.product(range(cm.shape[0]), range(cm.shape[1])):
-            plt.text(j, i, format(cm[i, j], fmt),
+        thresh = cnf_matrix.max() / 2.
+        for i, j in itertools.product(range(cnf_matrix.shape[0]), range(cnf_matrix.shape[1])):
+            plt.text(j, i, format(cnf_matrix[i, j], fmt),
                      horizontalalignment="center",
-                     color="white" if cm[i, j] > thresh else "black")
+                     color="white" if cnf_matrix[i, j] > thresh else "black")
 
         plt.tight_layout()
         plt.ylabel('True label')
