@@ -1,4 +1,5 @@
 # ----- Import basic libraries
+from __future__ import print_function
 import numpy as np
 import random
 
@@ -92,7 +93,7 @@ class CrossValidation(object):
 
             # Build classifier on best parameters using outer training set
             # Fit model to entire training dataset (i.e tuning & validation dataset)
-            print "fold-%s model fitting ..." % (k+1)
+            print("fold-%s model fitting ..." % (k+1))
 
             # Train on the training set
             grid.fit(x_train, y_train)
@@ -104,14 +105,14 @@ class CrossValidation(object):
             score = grid.score(x_test, y_test)
 
             outer_scores.append(score)
-            print "\tModel validation score", score
+            print("\tModel validation score", score)
 
         # Print final model evaluation (i.e. mean cross-validation scores)
-        print "Final model evaluation (mean cross-val scores):\n", np.array(outer_scores).mean()
+        print("Final model evaluation (mean cross-val scores):\n", np.array(outer_scores).mean())
             
         # Note: the scoring is being done without the weights associated with X
         # Fit model to entire training dataset (i.e tuning & validation dataset)
-        print "Performing fit over entire training data\n"
+        print("Performing fit over entire training data\n")
         grid.fit(X, y)
 
         return grid
@@ -140,7 +141,7 @@ class HyperOptObjective(object):
         # Involving accuracy
         #if auc_score > self.best:
         #    self.best = acc
-        #print 'new best:', self.best, params
+        #print('new best:', self.best, params)
         #return {'loss': -auc_score, 'status': STATUS_OK}
         print('SCORE:', auc_score, params)
         return {'loss': 1-auc_score, 'status': STATUS_OK }
