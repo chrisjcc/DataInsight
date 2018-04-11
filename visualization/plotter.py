@@ -118,7 +118,7 @@ class Plotter(object):
         return plt.show()
       
     ## Confusion matrix
-    def plot_confusion_matrix(self, y_true, y_pre, class_names, 
+    def plot_confusion_matrix(self, y_true, y_pred, class_names, 
                               normalize=True, title='Normalized confusion matrix', 
                               cmap=plt.cm.Blues):
         """
