@@ -9,12 +9,12 @@ import numpy as np
 import pandas as pd
 
 # ---- Import from root_numpy library 
-import root_numpy
-from root_numpy import root2array, rec2array, tree2array
+#import root_numpy
+#from root_numpy import root2array, rec2array, tree2array
 
 # ---- Import from root_pandas library
-import root_pandas
-from root_pandas import read_root
+#import root_pandas
+#from root_pandas import read_root
 
 # ---- Import from keras
 from keras.utils import np_utils
@@ -24,7 +24,7 @@ from keras import backend as K
 import uproot
 
 # ---- Import ROOT library
-from ROOT import TVector3, TLorentzVector, TChain, TFile
+#from ROOT import TVector3, TLorentzVector, TChain, TFile
 
 # ---- Import additional library
 import re
