@@ -569,6 +569,7 @@ class Plotter(object):
     ## Learning curve
     def learning_curve(self, model, X_train, y_train,
                        ylim=None, cv=None, n_jobs=1,
+                       scoring=None,
                        train_sizes=np.linspace(0.1, 1.0, 10, endpoint=True)):
         """
         Generate a simple plot of the test and training learning curve.
@@ -630,7 +631,7 @@ class Plotter(object):
                                                                     X_train, y_train,
                                                                     train_sizes=np.linspace(0.1, 1.0, 10),
                                                                     cv=cv,
-                                                                    scoring=None,
+                                                                    scoring=scoring,
                                                                     exploit_incremental_learning=False,
                                                                     n_jobs=n_jobs,
                                                                     pre_dispatch="all",
