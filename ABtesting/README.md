@@ -11,6 +11,43 @@ List which metrics used as invariant metrics and evaluation metrics.
 
 For each metric, explain both why you did or did not use it as an invariant metric and why you did or did not use it as an evaluation metric. Also, state what results you will look for in your evaluation metrics in order to launch the experiment.
 
+
+** Choosing invariant metrics:
+
+- Number of cookies: There is no difference between the control and experimental group when trying to view the course overview page, therefore the number of cookies should be the same in each group. 
+
+- Number of clicks: There is no difference the control and experimental group beforey they click the "Start free trial' button, therefore  the number of cookies should be the same in each group.
+
+- click-through-probability: Since there is no difference in the 'number of cookies' and 'number of clicks' metrics between the control and experimental group, there will be no difference in this metric. 
+
+** Metrics not choosen:
+
+- Number of user-ids: The experimental group is expect to have fewer users enrolled in the free-trial, thefore consistency is not expected between the groups. 
+
+- Cross conversion: The experimental group is expected to have fewer user-ids enrolled in the free trial, thefore consistency is not expected between the groups. 
+
+- Retention: The experimental group is expected to have more user-ids remain past the free-trial period and have fewer enrolled in the free-trial, therefore consistency is not expected between the groups. 
+
+- Net conversion: The experimental group is expected to have relatively more user-ids remain enrolled past the free-trial period, therefore consistency is not expected between the groups. 
+
+** Choosing Evaluation Metrics:
+
+- Cross conversion: Fewer user-ids are expected to complete the checkout and enrollend in the free-trial in the experimental group, but the number of unique cookies to click "Start free trial" button should be the same. For this reason, the gross conversion ratio should be higher for the control group than for the experimental group. To lauch the experiment, we need the experiment value to be at least 0.001 lower than the control value. 
+
+- Retention: At least as many user-ids in the experimental group are expected to reamin enrolled past the free-trial period, and fewer are expected to complete the free-trial checkout. For this reason, the retention ratio is expected to be higher for the experimental group than the control group. To launch the experiment, we need the experiment value to be no more than 0.001 less than the control value. 
+
+- Net conversion: At  least as many user-ids in the experimental group are expected to reamin	 enrolled past the free-trial period, and the number of unique cookies to click "Start free trial" button should be the same. For this reason the net conversion ratio should not decrease for the experiment. To lanuch the experiment, we need the experiment value to be no more than 0.0075 lower than the control value. 
+
+* Metrics not chosen
+
+- Number of cookies: There is no difference between the control and experimental group when trying to view the course overview page, and for this reason the number of cookies should be the same in each group. 
+
+- Number of user-ids: Although it is a valid evaluation metric, I am not choosing it because it is not normalized and if we have slighly different sized experimental and control groups, its accuracy will decrease. Therefore, it is not a useful metric for comparison as a chosen evaluation metric.
+
+- Number of clicks: There is no difference between the control and experimental group before they click the "Start free trial" button, therefore the number of clicks should be the same in each group. 
+
+- Click-through-probability: Since there is no difference in the 'Number of cookies' and 'number of clicks' metrics between the experimental and control group, there will be no difference in this metric.
+
 ### Measuring Standard Deviation 
 
 List the standard deviation of each of the evaluation metrics.
