@@ -194,6 +194,7 @@ estimator.fit(X_train, y_train)
 model = InMemoryModel(estimator.predict_proba, 
                       examples=X_train)
 
+# Model-agnostic Variable Importance for global interpretation
 plots = interpreter.feature_importance.plot_feature_importance(model, ascending=True)
 
 # Use partial dependence to understand the relationship between a variable and a model's predictions
@@ -204,6 +205,11 @@ model = InMemoryModel(estimator.predict_proba,
 
 # Lets understand interaction using 2-way interaction using the same covariates                                                     
 # feature_selection
+
+# Partial dependence plots for global interpretation
+# A visualization technique that can be used to understnd and estimate the dependence 
+# of the joint interaction of the subset of input variables to the model's response function
+# One-way interaction
 p = interpreter.partial_dependence.plot_partial_dependence(features,
                                                            model, 
                                                            grid_resolution=50, #30 
@@ -212,6 +218,8 @@ p = interpreter.partial_dependence.plot_partial_dependence(features,
         
 model_feature_interaction = InMemoryModel(estimator.predict_proba, examples=X_train, target_names=['acdc', 
                                                                                   'non_acdc'])
+
+# Two-way interaction
 interpreter.partial_dependence.plot_partial_dependence([("maxDeltaEta_tag_tag", "mass_higgsLikeDijet")], 
                                                        model, 
                                                        grid_resolution=10)
@@ -233,6 +241,7 @@ exp.explain_instance(X_test[1], estimator.predict_proba)
 def understanding_interaction():
     pyint_model = InMemoryModel(estimator.predict_proba, examples=X_test, target_names=features)
     # ['worst area', 'mean perimeter'] --> list(feature_selection.value)
+    # Two-way iteraction
     interpreter.partial_dependence.plot_partial_dependence(["mass_tag_tag_max_mass", "maxDeltaEta_jet_jet"],
                                                            model, 
                                                            grid_resolution=grid_resolution.value,
@@ -240,6 +249,7 @@ def understanding_interaction():
         
     # Lets understand interaction using 2-way interaction using the same covariates
     # feature_selection.value --> ('worst area', 'mean perimeter')
+    # Two-way iteraction 
     axes_list = interpreter.partial_dependence.plot_partial_dependence(["mass_tag_tag_max_mass", "maxDeltaEta_jet_jet"],
                                                                        pyint_model, 
                                                                        grid_resolution=grid_resolution.value,
