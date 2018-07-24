@@ -1,4 +1,4 @@
-## Introduction
+## Introduction Bike-Sharing data challenge
 
 Bike-Share is a bike share service provider where users can take and return bikes at any of the 100 stations on their network. The company wants to leverage their data to better understand and, hopefully, optimize their operations. They are interested in exploring the potential of machine learning to predict the number of bikes taken and returned to each station.
 
