@@ -12,9 +12,22 @@ Christian Contreras-Campana, PhD <br />
 
 Dedicated area for the development data insight in the area of predictive analytics from churn prediction, fraud detection, and general maching learning modeling
 
-This repository contains an example jupyter notebook. The DataInsight directory has
-the data science visualization, optimization, feature selection, deep neural network model,
-and utilities toolkits.
+This repository contains an example jupyter notebook. The DataInsight repository include the following topics:
+
+- Data science visualization
+- Model optimization
+- Feature selection
+- Machine learning model explanation and interpretation
+- Deep learning
+- Computer vision
+- Reinforcement learning
+- Topic modeling
+- Sentiment analysis
+- Time series analysis
+- Cluster analysis
+- A/B testing with Bayesian inference
+- Survivial analysis
+- Utilities toolkits
 
 
 Installation
